@@ -1,5 +1,6 @@
 ﻿using Demo.Contracts;
 using System.ServiceModel;
+using System;
 
 namespace Demo.Proxies
 {
@@ -8,6 +9,16 @@ namespace Demo.Proxies
         public ProcessDuplexClient(InstanceContext callback)
             : base(callback)
         { }
+
+        public bool Connect()
+        {
+            return Channel.Connect();
+        }
+
+        public void Disconnect()
+        {
+            Channel.Disconnect();
+        }
 
         public void StartProcess()
         {

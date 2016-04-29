@@ -14,11 +14,12 @@ namespace Demo.Client
         public MainWindow()
         {
             InitializeComponent();
+            this._proxy = new ProcessDuplexClient(new System.ServiceModel.InstanceContext(this));
+            this.BtnStart.IsEnabled = !(this._proxy.Connect());
         }
 
         private void StartProcess(object sender, RoutedEventArgs e)
-        {
-            this._proxy = new ProcessDuplexClient(new System.ServiceModel.InstanceContext(this));
+        {            
             this._proxy.StartProcess();
 
             this._cancel = false;
@@ -29,20 +30,32 @@ namespace Demo.Client
         {
             base.OnClosing(e);
 
+            this._proxy.Disconnect();
+
             this._cancel = true;
-            this._proxy.Abort();
+            this._proxy.Close();
         }
 
         private void CloseProcess(object sender, RoutedEventArgs e)
         {
             this._cancel = true;
 
-            this.BtnStart.IsEnabled = true;
+            //this.BtnStart.IsEnabled = true;
         }
 
         public bool ReportBack(int nr)
         {
-            this.lblOutput.Content = nr;
+            if (nr > 0)
+            {
+                this.BtnStart.IsEnabled = false;
+                this.lblOutput.Content = nr;
+            }
+            else
+            {
+                this.BtnStart.IsEnabled = true;
+                this.lblOutput.Content = "Done";
+                this._cancel = false;
+            }            
 
             return this._cancel;
         }

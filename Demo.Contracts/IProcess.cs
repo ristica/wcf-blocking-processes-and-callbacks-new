@@ -5,7 +5,13 @@ namespace Demo.Contracts
     [ServiceContract(CallbackContract = typeof(IProcessCallback))]
     public interface IProcess
     {
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         void StartProcess();
+
+        [OperationContract]
+        bool Connect();
+
+        [OperationContract]
+        void Disconnect();
     }
 }
