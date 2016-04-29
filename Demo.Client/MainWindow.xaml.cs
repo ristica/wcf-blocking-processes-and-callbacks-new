@@ -39,8 +39,6 @@ namespace Demo.Client
         private void CloseProcess(object sender, RoutedEventArgs e)
         {
             this._cancel = true;
-
-            //this.BtnStart.IsEnabled = true;
         }
 
         public bool ReportBack(int nr)
