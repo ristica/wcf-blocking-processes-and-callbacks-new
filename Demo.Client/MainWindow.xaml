@@ -1,0 +1,43 @@
+﻿<Window x:Class="Demo.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo.Client"
+        mc:Ignorable="d"
+        Title="Long running process..." Height="350" Width="525">
+    <Grid>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0"
+                    Margin="20"
+                    Name="BtnStart"
+                    Content="Start process"
+                    Click="StartProcess"></Button>
+
+            <Label x:Name="lblOutput"
+                   Grid.Row="1"
+                   Margin="20"
+                   FontSize="26"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Foreground="Blue"
+                   FontWeight="Bold"
+                   Content="OUTPUT"/>
+
+            <Button Grid.Row="2"
+                    Name="BtnStop"
+                    Margin="20"
+                    Content="Abort / Close process"
+                    Click="CloseProcess"></Button>
+
+        </Grid>
+        
+    </Grid>
+</Window>
